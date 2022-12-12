@@ -27,12 +27,12 @@ To avoid huge and unreadable network graphs, we introduced in Network Observabil
 Showing by default the last 5 minutes, it allows you to focus on a particular time window
 
 - Filtering
-To select a particular set of Source and / or Destination records such as `IPs`, `Ports`, `Protocol`, `Kind`, `Name` etc
+To select a particular set of records based on Source and / or Destination criterias such as `IPs`, `Ports`, `Protocol`, `Kind`, `Name` etc
 
-- Level of details (named scope) 
+- Level of details (scope display option) 
 Allowing you to select from `Node` / `Namespace` / `Owner` / `Resource` aggregating metrics into the specified layer
 
-- Grouping 
+- Groups
 To arrange components by their ownership
 
 ## Example of usage
@@ -41,9 +41,9 @@ What happens in your network when you deploy a [httpd sample application](https:
 
 ![Sample app deployment](./images/sample-app-deployment.png)
 
-You can see that the final deployed pod in blue involved another pod called `httpd-sample-1-build` that pulled the image from `openshift-image-registry`, did some DNS resolution for provided image URL, pulled it from the resolved external IP before creating our pod through kubernetes services.
+You can see that the final deployed pod in blue involved another pod called `httpd-sample-1-build` that pulled the image from `openshift-image-registry` (1), did some DNS resolution for provided image URL (2), pulled it from the resolved external IP (3) before creating our pod through kubernetes services (4).
 
-Finally, some flows are showing between our pod and `openshift-ingress` after opening the hosted page.
+Finally, some flows are showing between our pod and `openshift-ingress` after opening the hosted page (5).
 
 After moving my time window or waiting a bit, the `httpd-sample-1-build` pod disappears as it's status is now `Completed`.
 
@@ -66,13 +66,13 @@ We can do the following observation from this:
 
 Here is where [3D Topology](https://github.com/jpinsonneau/react-three-topology) makes the scene !
 
-3D representations are pretty old and you can find a lot of them online such as [networkmaps](https://github.com/pablomarle/networkmaps), [vagrant-mesh-net](https://github.com/IMPIMBA/vagrant-mesh-net) or even more generic ones such as [splunk-3D-graph-network-topology-viz](https://github.com/splunk/splunk-3D-graph-network-topology-viz). Each of these has it's own rendering philosophy to resolve specific use cases.
+3D representations are pretty old and you can find a lot of them online such as [networkmaps](https://github.com/pablomarle/networkmaps), [vagrant-mesh-net](https://github.com/IMPIMBA/vagrant-mesh-net) or even more generic ones such as [splunk-3D-graph-network-topology-viz](https://github.com/splunk/splunk-3D-graph-network-topology-viz). Each of these has its own rendering philosophy to resolve specific use cases.
 
 This is a way to render your network using a representation everybody knows: "buildings".
 ```
 To enable this feature in Network Observability, you will need to use Network Observability v1.0 and add "&3d=preview" in the URL. 
 Then go to Topology tab -> Show advanced options -> Display options 
-From there you can now select "3D" in the Layout option.
+From there set Scope option as "Resource" and Layout as "3D".
 ```
 
 ![3D topology building](./images/3d-building.png)
@@ -101,8 +101,22 @@ It also pin up how your load is balanced between nodes.
 The important part of your network traffic is highlighted since lines are less likely to cross than in the 2D view and their size and color differ according to bytes rate. 
 A thin black line will represent a smaller amount than a heavy red line.
 
-TODO: 
-- conclusion
-- open questions on use cases
-- alternative layouts
-- how contribute
+## Conclusion
+
+We need to identify the various use cases to elaborate proper representations. This is a daily step by step work between internal teams on both engineering and UI / UX and customers. We are likely to implement more views in the future to highlight network issues, health, threats and usage. 
+One of the next implementations is going to be [sankey chart](https://observablehq.com/@d3/sankey) that will be useful for connection tracking.
+
+## We need you !
+
+Feel free to contribute by commenting this post, opening issues in [netobserv console plugin](https://github.com/netobserv/network-observability-console-plugin/issues) or opening pull request in any [netobserv component](https://github.com/netobserv)
+
+Tell us more about your expectations, the way you currently solve issues and what could help your daily experience.
+
+![Gallery 1](./images/gallery-1.png)
+![Gallery 2](./images/gallery-2.png)
+![Gallery 3](./images/gallery-3.png)
+![Gallery 4](./images/gallery-4.png)
+![Gallery 5](./images/gallery-5.png)
+![Gallery 6](./images/gallery-6.png)
+![Gallery 7](./images/gallery-7.png)
+![Gallery 8](./images/gallery-8.png)
