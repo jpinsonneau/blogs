@@ -15,7 +15,7 @@ Network Observability brings user interfaces in OpenShift web console administra
 - Topology (using directed graph layout)
 ![Topology example](./images/topology.png)
 
-If you are interested in Network Observability for your cluster, check [official documentation for installation](TODO).
+If you are interested in Network Observability for your cluster, check [official documentation for installation](https://docs.openshift.com/container-platform/4.12/networking/network_observability/installing-operators.html).
 
 ## Network representations
 
